@@ -5,7 +5,9 @@ PartOf=graphical-session.target
 
 [Service]
 ExecStart=/usr/bin/wayvnc
-Restart=on-failure
+# wayvnc exits cleanly when its output disappears (a monitor reconfigure,
+# unplug or resume), so on-failure would leave VNC down until the next login.
+Restart=always
 RestartSec=5
 
 [Install]
