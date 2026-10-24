@@ -44,7 +44,7 @@ the setup script.
 
 - **SSH:** keys only (`system/20-key-only.conf`), for the clients listed in
   `private_dot_ssh/private_authorized_keys`. It's open to the home LAN
-  (`192.168.86.0/24` and private IPv6, so `<box>.local` works) and over
+  (`192.168.86.0/24` and private IPv6; `<box>.local` answers on wired links) and over
   Tailscale (`<box>`) only.
 - **T3 Code** starts at login (`dot_config/hypr/autostart.lua`), because its
   server runs inside the desktop app.

@@ -43,6 +43,15 @@ sudo ufw allow from fc00::/7 to any port 22 proto tcp comment 'SSH from LAN (IPv
 sudo ufw allow from fe80::/10 to any port 22 proto tcp comment 'SSH from LAN (IPv6 link-local)'
 sudo ufw allow in on tailscale0 to any port 22 proto tcp comment 'SSH over Tailscale'
 
+# mDNS (<box>.local) on wired interfaces only. With wired and Wi-Fi on the same
+# LAN, a Wi-Fi roam makes avahi hear its own wired record as a name conflict
+# and rename the box <box>-2.local. Wi-Fi-only use still has Tailscale (<box>).
+wired=$(nmcli -t -f DEVICE,TYPE device | awk -F: '$2 == "ethernet" { printf "%s%s", sep, $1; sep = "," }')
+if [[ -n $wired ]] && ! grep -qx "allow-interfaces=$wired" /etc/avahi/avahi-daemon.conf; then
+  sudo sed -i -E "s/^#?allow-interfaces=.*/allow-interfaces=$wired/" /etc/avahi/avahi-daemon.conf
+  sudo systemctl restart avahi-daemon
+fi
+
 # Tailscale. With TS_AUTHKEY set (a reusable key tagged tag:agent, kept in
 # Bitwarden) the box joins unattended and never expires; without it, this
 # prints a browser login link.
