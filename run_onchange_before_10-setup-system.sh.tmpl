@@ -16,8 +16,10 @@ rebuild_initramfs() {
   fi
 }
 
-# Extra packages beyond Omarchy's defaults.
-omarchy pkg add openssh bitwarden bitwarden-cli t3code-bin ethtool
+# Extra packages beyond Omarchy's defaults, plus the ones agents and the fleet
+# skills rely on (tmux, jq, sqlite) so they don't depend on Omarchy keeping
+# them. `omarchy update` keeps all of them current, then the mise tools.
+omarchy pkg add openssh bitwarden bitwarden-cli t3code-bin ethtool tmux jq sqlite
 
 # Keyboard layout system-wide: TTY, boot password prompt, and Hyprland, which
 # reads /etc/vconsole.conf. UK unless the machine overrides `keyboard` (see

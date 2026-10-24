@@ -2,7 +2,7 @@
 claude = "latest"
 codex = "latest"
 gh = "latest"
-node = "26.8.2"
+node = "26"
 # Omarchy installs Grok this way; keep it so applying doesn't remove it.
 "npm:@xai-official/grok" = "latest"
 

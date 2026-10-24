@@ -55,6 +55,20 @@ the setup script.
   reads the layout from `/etc/vconsole.conf`, so it's set in one place.
   Omarchy makes Caps Lock a Compose key; real Caps Lock is both Shifts.
 
+## Software
+
+Tracked here, installed on every machine and kept current by
+`omarchy update` (packages, then `mise up`):
+
+- **Packages:** Tailscale, T3 Code (`t3code-bin`), wayvnc, OpenSSH,
+  Bitwarden and its CLI, chezmoi, Voxtype, ethtool, tmux, jq and sqlite.
+- **mise** (`dot_config/mise/config.toml`): Claude Code, Codex, GitHub CLI,
+  Grok and Node 26. Omarchy's own tools (git, Docker and the rest) come with
+  Omarchy.
+
+After an update that installs a new kernel, reboot (and unlock the disk) so
+modules such as Tailscale's `tun` load.
+
 ## VNC
 
 macOS Screen Sharing works: `vnc://<box-name>`. It asks for a password only,
