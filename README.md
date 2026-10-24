@@ -63,8 +63,9 @@ Tracked here, installed on every machine and kept current by
 - **Packages:** Tailscale, T3 Code (`t3code-bin`), wayvnc, OpenSSH,
   Bitwarden and its CLI, chezmoi, Voxtype, ethtool, tmux, jq and sqlite.
 - **mise** (`dot_config/mise/config.toml`): Claude Code, Codex, GitHub CLI,
-  Grok and Node 26. Omarchy's own tools (git, Docker and the rest) come with
-  Omarchy.
+  Grok and Node 26. Grok then keeps its own copy in `~/.grok`, which a
+  post-update hook refreshes with `grok update`. Omarchy's own tools (git,
+  Docker and the rest) come with Omarchy.
 
 After an update that installs a new kernel, reboot (and unlock the disk) so
 modules such as Tailscale's `tun` load.

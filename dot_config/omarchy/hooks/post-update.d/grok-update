@@ -1,0 +1,4 @@
+# Grok keeps its own copy in ~/.grok and updates it apart from mise, so bring
+# it current whenever `omarchy update` runs.
+grok=$(command -v grok || echo "$HOME/.local/share/mise/shims/grok")
+[[ -x $grok ]] && "$grok" update
