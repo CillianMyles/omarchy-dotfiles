@@ -37,6 +37,10 @@ sudo systemctl enable --now sshd
 sudo systemctl reload sshd
 sudo ufw delete allow 22/tcp >/dev/null 2>&1 || true
 sudo ufw allow from 192.168.86.0/24 to any port 22 proto tcp comment 'SSH from LAN'
+# <box>.local also resolves to the box's IPv6 LAN addresses, which some
+# clients (iPhone, iPad) may try first: allow SSH from private IPv6 too.
+sudo ufw allow from fc00::/7 to any port 22 proto tcp comment 'SSH from LAN (IPv6)'
+sudo ufw allow from fe80::/10 to any port 22 proto tcp comment 'SSH from LAN (IPv6 link-local)'
 sudo ufw allow in on tailscale0 to any port 22 proto tcp comment 'SSH over Tailscale'
 
 # Tailscale. With TS_AUTHKEY set (a reusable key tagged tag:agent, kept in

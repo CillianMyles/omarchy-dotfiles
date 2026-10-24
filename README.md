@@ -44,7 +44,10 @@ the setup script.
 
 - **SSH:** keys only (`system/20-key-only.conf`), for the clients listed in
   `private_dot_ssh/private_authorized_keys`. It's open to the home LAN
-  (`192.168.86.0/24`) and over Tailscale only.
+  (`192.168.86.0/24` and private IPv6, so `<box>.local` works) and over
+  Tailscale (`<box>`) only.
+- **T3 Code** starts at login (`dot_config/hypr/autostart.lua`), because its
+  server runs inside the desktop app.
 - **Pseudo-headless server:** wayvnc (Tailscale only), the lid stays awake on
   AC or with an external display, no screensaver, and Wake-on-LAN on wired
   connections.
