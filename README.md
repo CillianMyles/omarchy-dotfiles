@@ -48,9 +48,10 @@ the setup script.
   Tailscale (`<box>`) only.
 - **T3 Code** starts at login (`dot_config/hypr/autostart.lua`), because its
   server runs inside the desktop app.
-- **Pseudo-headless server:** wayvnc (Tailscale only), the lid stays awake on
-  AC or with an external display, no screensaver, and Wake-on-LAN on wired
-  connections.
+- **Pseudo-headless server:** wayvnc (Tailscale only), closing the lid never
+  suspends (even on battery, so a power cut doesn't put a laptop to sleep;
+  suspend from the menu before carrying one), no screensaver, and Wake-on-LAN
+  on wired connections.
 - **Keyboard:** UK unless the machine overrides it. Omarchy's Hyprland config
   reads the layout from `/etc/vconsole.conf`, so it's set in one place.
   Omarchy makes Caps Lock a Compose key; real Caps Lock is both Shifts.

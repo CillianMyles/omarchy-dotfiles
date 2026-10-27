@@ -87,8 +87,8 @@ if [[ $(cat /sys/class/dmi/id/sys_vendor 2>/dev/null) == Apple* ]] &&
   rebuild_initramfs
 fi
 
-# Headless server: stay awake with the lid closed on AC or with an external
-# display (IP KVM) attached; still suspend on battery.
+# Headless server: never suspend on lid close, so a power cut doesn't put a
+# laptop to sleep.
 sudo install -m644 "$CHEZMOI_SOURCE_DIR/system/30-headless-lid.conf" /etc/systemd/logind.conf.d/
 sudo systemctl reload systemd-logind
 
