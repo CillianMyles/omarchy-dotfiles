@@ -61,7 +61,8 @@ the setup script.
 Tracked here, installed on every machine and kept current by
 `omarchy update` (packages, then `mise up`):
 
-- **Packages:** Tailscale, T3 Code (`t3code-bin`), wayvnc, OpenSSH,
+- **Packages:** Tailscale, T3 Code (Omarchy's self-updating AppImage from
+  Omarchy 4.5, `t3code-bin` before), wayvnc, OpenSSH,
   Bitwarden and its CLI, chezmoi, Voxtype, ethtool, tmux, jq and sqlite.
 - **mise** (`dot_config/mise/config.toml`): Claude Code, Codex, GitHub CLI,
   Grok and Node 26. Grok then keeps its own copy in `~/.grok`, which a

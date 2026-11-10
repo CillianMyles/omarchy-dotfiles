@@ -19,7 +19,18 @@ rebuild_initramfs() {
 # Extra packages beyond Omarchy's defaults, plus the ones agents and the fleet
 # skills rely on (tmux, jq, sqlite) so they don't depend on Omarchy keeping
 # them. `omarchy update` keeps all of them current, then the mise tools.
-omarchy pkg add openssh bitwarden bitwarden-cli t3code-bin ethtool tmux jq sqlite
+omarchy pkg add openssh bitwarden bitwarden-cli ethtool tmux jq sqlite
+
+# T3 Code: from Omarchy 4.5, Omarchy's AppImage install, which updates itself
+# (its migration swaps an existing t3code-bin for it). Older Omarchy has only
+# the package. Leave whichever install is already there.
+if [[ ! -x $HOME/.local/share/t3code/T3-Code.AppImage ]] && ! pacman -Q t3code-bin >/dev/null 2>&1; then
+  if command -v omarchy-install-ai-t3-code >/dev/null; then
+    omarchy-install-ai-t3-code stable --no-launch
+  else
+    omarchy pkg add t3code-bin
+  fi
+fi
 
 # Keyboard layout system-wide: TTY, boot password prompt, and Hyprland, which
 # reads /etc/vconsole.conf. UK unless the machine overrides `keyboard` (see
